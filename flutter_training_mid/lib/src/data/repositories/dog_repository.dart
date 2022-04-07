@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter_training_mid/src/data/datasource/api_datasource.dart';
 import 'package:flutter_training_mid/src/data/model/dog/dog.dart';
+import 'package:flutter_training_mid/src/utils/app_utils.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class DogRepository {
@@ -19,10 +20,10 @@ class DogRepository {
           .map((e) => Dog.fromJson(e))
           .toList();
       if (willCached && box.values.isNotEmpty) {
-        log("CACHED", name: runtimeType.toString());
+   AppUtils.logger("Cached", location: runtimeType);
         return box.values.toList();
       } else {
-        log("NOT CACHED YET", name: runtimeType.toString());
+        AppUtils.logger("NOT CACHED YET", location: runtimeType);
         box.addAll(data);
         return data;
       }

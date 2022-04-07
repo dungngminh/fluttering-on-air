@@ -9,9 +9,7 @@ class DogProvider {
   ValueNotifier<Status> status = ValueNotifier(Status.idle);
 
   final DogRepository dogRepository;
-  DogProvider({
-    required this.dogRepository,
-  }) {
+  DogProvider({required this.dogRepository}) {
     status.value = Status.loading;
     dogRepository.getDog(willCached: true).then((dogs) {
       listDog = ValueNotifier<List<Dog>>(dogs ?? []);

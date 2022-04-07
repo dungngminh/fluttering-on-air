@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:flutter_training_mid/src/utils/app_utils.dart';
 import 'package:http/http.dart';
 
 class Apidatasource {
@@ -13,14 +12,14 @@ class Apidatasource {
           "https://raw.githubusercontent.com/DevTides/DogsApi/master/dogs.json?fbclid=IwAR1J8V0aEe9JQf0FxkMP_NWRjK0Qg9AAwzZWg6Hh4g-yeesSCKPLBgbh-_g";
       final Response response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
-        log("OKE", name: "Apidatasource");
+        AppUtils.logger("200", location: runtimeType);
         return response.body;
       } else {
-        log("NOT OK", name: "Apidatasource");
+        AppUtils.logger("NOT OK", location: runtimeType);
         throw Exception();
       }
     } catch (e) {
-      log(e.toString(), name: "Api");
+      AppUtils.logger(e, location: runtimeType);
       rethrow;
     }
   }
